@@ -22,22 +22,24 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
-  Future<dynamic> showAlertDialog(
-      BuildContext context, String konten) {
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  bool isPasswordNotVisible = false;
+
+  Future<dynamic> showAlertDialog(BuildContext context, String konten) {
     return showDialog(
       context: context,
       builder: (context) {
         return AlertDialog(
-          // title: Text(judul),
           content: Text(
             konten,
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold
-            ),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
           alignment: Alignment.center,
           backgroundColor: const Color(0xFFFCD561),
@@ -88,171 +90,180 @@ class MyHomePage extends StatelessWidget {
       body: Center(
           child: SingleChildScrollView(
         child: SizedBox(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height - 200,
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      // const Text(
-                      //   "Profile",
-                      //   style: TextStyle(color: Colors.black, fontSize: 30),
-                      // ),
-                      SizedBox(
-                        height: 120,
-                        width: 100,
-                        child: Stack(
-                          children: [
-                            Container(
-                              width: 100,
-                              height: 100,
-                              decoration: BoxDecoration(
-                                  color: Colors.black,
-                                  borderRadius: BorderRadius.circular(50)),
-                              child: const Icon(
-                                Icons.person_rounded,
-                                size: 50,
-                                color: Colors.grey,
-                              ),
-                            ),
-                            Positioned(
-                              bottom: 12,
-                              right: 40,
-                              child: Container(
-                                width: 19,
-                                height: 19,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height - 200,
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          height: 120,
+                          width: 100,
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: 100,
+                                height: 100,
                                 decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(20)),
-                                child: const Text(
-                                  "X",
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
                                     color: Colors.black,
-                                  ),
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: const Icon(
+                                  Icons.person_rounded,
+                                  size: 50,
+                                  color: Colors.grey,
                                 ),
                               ),
-                            )
-                          ],
+                              Positioned(
+                                bottom: 12,
+                                right: 40,
+                                child: Container(
+                                  width: 19,
+                                  height: 19,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(20)),
+                                  child: const Text(
+                                    "X",
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
-                      ),
-                    ]),
-                Container(
-                  alignment: Alignment.centerLeft,
-                  width: MediaQuery.of(context).size.width - 50,
-                  height: 200,
-                  child: const Column(
-                    children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Email Address',
-                          labelStyle: TextStyle(
-                            color: Colors.grey,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.yellow,
-                              width: 1.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                      ]),
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    width: MediaQuery.of(context).size.width - 50,
+                    height: 200,
+                    child: Column(
+                      children: [
+                        const TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Email Address',
+                            labelStyle: TextStyle(
                               color: Colors.grey,
-                              width: 1.0,
                             ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.yellow,
+                                width: 1.0,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusColor: Colors.yellow,
                           ),
-                          focusColor: Colors.yellow,
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      TextField(
-                        decoration: InputDecoration(
-                          labelText: 'Name',
-                          labelStyle: TextStyle(
-                            color: Colors.grey,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.yellow,
-                              width: 1.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                        const SizedBox(height: 15),
+                        const TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Name',
+                            labelStyle: TextStyle(
                               color: Colors.grey,
-                              width: 1.0,
                             ),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.yellow,
+                                width: 1.0,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                            ),
+                            focusColor: Colors.yellow,
                           ),
-                          focusColor: Colors.yellow,
                         ),
-                      ),
-                      SizedBox(height: 15),
-                      TextField(
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          labelText: 'Password',
-                          labelStyle: TextStyle(
-                            color: Colors.grey,
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.yellow,
-                              width: 1.0,
-                            ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
+                        const SizedBox(height: 15),
+                        TextField(
+                          obscureText: !isPasswordNotVisible,
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            labelStyle: const TextStyle(
                               color: Colors.grey,
-                              width: 1.0,
                             ),
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.yellow,
+                                width: 1.0,
+                              ),
+                            ),
+                            enabledBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                                width: 1.0,
+                              ),
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                isPasswordNotVisible
+                                    ? Icons.visibility
+                                    : Icons.visibility_off,
+                                color: Colors.grey,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  isPasswordNotVisible = !isPasswordNotVisible;
+                                });
+                              },
+                            ),
+                            focusColor: Colors.yellow,
                           ),
-                          focusColor: Colors.yellow,
+                          keyboardType: TextInputType.text,
                         ),
-                        keyboardType: TextInputType.text,
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(5),
-                        ),
-                        backgroundColor: const Color.fromARGB(
-                            255, 184, 184, 184), // Warna tombol
-                        foregroundColor: Colors.black,
-                      ),
-                      onPressed: () {},
-                      child: const Text("Cancel"),
+                      ],
                     ),
-                    ElevatedButton(
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(5),
                           ),
-                          backgroundColor:
-                              const Color(0xFF503E9D), // Warna tombol
-                          foregroundColor: Colors.white,
+                          backgroundColor: const Color.fromARGB(
+                              255, 184, 184, 184), // Warna tombol
+                          foregroundColor: Colors.black,
                         ),
-                        onPressed: () {
-                          showAlertDialog(
-                            context,
-                            // "Edit",
-                            "Are you sure to changed your profile data?",
-                          );
-                        },
-                        child: const Text("Edit")),
-                  ],
-                )
-              ]),
-        ),
+                        onPressed: () {},
+                        child: const Text("Cancel"),
+                      ),
+                      ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            backgroundColor:
+                                const Color(0xFF503E9D), // Warna tombol
+                            foregroundColor: Colors.white,
+                          ),
+                          onPressed: () {
+                            showAlertDialog(
+                              context,
+                              // "Edit",
+                              "Are you sure to changed your profile data?",
+                            );
+                          },
+                          child: const Text("Edit")),
+                    ],
+                  )
+                ]),
+          ),
       )),
     );
   }
